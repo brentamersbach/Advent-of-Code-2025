@@ -12,14 +12,14 @@ class Day_2: Day {
     
     // Check function for part 1 of challenge
     func checkID_A(for value: Int) -> Bool {
-        // Prefilter some obvious cases
+        // Prefilter numbers with odd number of digits as they can't be a pattern repeated only twice
         if String(value).count % 2 == 1 {
             return false
         }
+        // Multiples of 11 are automatically a hit
         if String(value).count == 2 && value % 11 == 0 {
             return true
         }
-        
         
         let halfLen = String(value).count / 2
         let frontHalf = String(value).prefix(halfLen)
@@ -28,13 +28,34 @@ class Day_2: Day {
         if frontHalf == backHalf { return true } else { return false }
     }
     
+    // Check function for part 2 of challenge
+    func checkID_B(for value: Int) -> Bool {
+        let valueString = String(value)
+        let halfLen = valueString.count / 2
+        for i in 1..<(halfLen+1) {
+            let token=valueString.prefix(i)
+            do {
+                let regexString = "^(\(token))+$"
+                let regex = try Regex(regexString)
+                let matches = valueString.ranges(of: regex)
+                if matches.count > 0 {
+                    return true
+                }
+            } catch {
+                continue
+            }
+        }
+        return false
+    }
+    
     override func run() {
 //      Processing input
-        let input: String = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
-//        let input: String = "52-75,71615244-71792700,89451761-89562523,594077-672686,31503-39016,733-976,1-20,400309-479672,458-635,836793365-836858811,3395595155-3395672258,290-391,5168-7482,4545413413-4545538932,65590172-65702074,25-42,221412-256187,873499-1078482,118-154,68597355-68768392,102907-146478,4251706-4487069,64895-87330,8664371543-8664413195,4091-5065,537300-565631,77-115,83892238-83982935,6631446-6694349,1112-1649,7725-9776,1453397-1493799,10240-12328,15873-20410,1925-2744,4362535948-4362554186,3078725-3256936,710512-853550,279817-346202,45515-60928,3240-3952"
+//        let input: String = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
+        let input: String = "52-75,71615244-71792700,89451761-89562523,594077-672686,31503-39016,733-976,1-20,400309-479672,458-635,836793365-836858811,3395595155-3395672258,290-391,5168-7482,4545413413-4545538932,65590172-65702074,25-42,221412-256187,873499-1078482,118-154,68597355-68768392,102907-146478,4251706-4487069,64895-87330,8664371543-8664413195,4091-5065,537300-565631,77-115,83892238-83982935,6631446-6694349,1112-1649,7725-9776,1453397-1493799,10240-12328,15873-20410,1925-2744,4362535948-4362554186,3078725-3256936,710512-853550,279817-346202,45515-60928,3240-3952"
 
         var ranges: [(min: String, max: String)] = []
-        var invalidIDs: [Int] = []
+        var invalidIDs_A: [Int] = []
+        var invalidIDs_B: [Int] = []
                 
         let inputElements = input.split(separator: ",")
         for element in inputElements {
@@ -49,14 +70,24 @@ class Day_2: Day {
             let start = Int(range.min) ?? 0
             let end = Int(range.max) ?? 0
             for i in start...end {
-                if checkID_A(for: i) { invalidIDs.append(i) }
+                if checkID_A(for: i) {
+                    print("Matched part A: \(i)")
+                    invalidIDs_A.append(i)
+                } else {
+                    if checkID_B(for: i) {
+                        print("Matched part B: \(i)")
+                        invalidIDs_B.append(i)
+                    }
+                }
             }
         }
-        for id in invalidIDs {
+        for id in invalidIDs_A {
             print(id)
         }
-        let sum = invalidIDs.reduce(0, +)
-        print("Sum: \(sum)")
+        let sumA = invalidIDs_A.reduce(0, +)
+        print("Sum part A: \(sumA)")
+        let sumB = invalidIDs_B.reduce(0, +)
+        print("Sum part B: \(sumA + sumB)")
         return
     }
 }
