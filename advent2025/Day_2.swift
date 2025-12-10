@@ -33,16 +33,14 @@ class Day_2: Day {
         let valueString = String(value)
         let halfLen = valueString.count / 2
         for i in 1..<(halfLen+1) {
-            let token=valueString.prefix(i)
-            do {
-                let regexString = "^(\(token))+$"
-                let regex = try Regex(regexString)
-                let matches = valueString.ranges(of: regex)
-                if matches.count > 0 {
-                    return true
+            if valueString.count % i == 0 {
+                let token=valueString.prefix(i)
+                let repeatFactor = valueString.count / i
+                var checkString = ""
+                for _ in 1...repeatFactor {
+                    checkString.append(String(token))
                 }
-            } catch {
-                continue
+                if checkString == valueString { return true }
             }
         }
         return false
