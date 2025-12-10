@@ -29,6 +29,9 @@ import Darwin
         let day2=Day_2()
         days.append(day2)
         
+        let day3=Day_3()
+        days.append(day3)
+        
         while true {
             let selectedDay = getDay(from: days)
             if let day = days.first(where: { day in
@@ -39,7 +42,10 @@ import Darwin
                 }
             }) {
                 day.run()
-            } else { fputs("Invalid day", stderr) }
+                print("\n------------\n")
+            } else { exit(EXIT_SUCCESS) }
         }
+        
+//        day3.run()
     }
 }
