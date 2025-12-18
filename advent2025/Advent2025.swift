@@ -9,7 +9,7 @@ import Darwin
 @main struct Advent2025 {
     static func getDayFromCLI(from days:[Day]) -> Int? {
         // Check for selected day on the command line
-        if CommandLine.arguments.count > 0 {
+        if CommandLine.arguments.count > 1 {
             let dayString = CommandLine.arguments[1]
             if let dayInt = dayString.first?.wholeNumberValue {
                 return dayInt
@@ -18,9 +18,14 @@ import Darwin
         return nil
     }
     
+    static func getInputFilePath() -> String {
+        if CommandLine.arguments.count > 2 {
+            return CommandLine.arguments[2]
+        } else { return "" }
+    }
+    
     static func getDayFromUser(from days:[Day]) -> Int {
-        
-        
+
         // Ask user for day
         print("Which day would you like to run?")
         for day in days {
@@ -34,6 +39,8 @@ import Darwin
         }
     }
     
+    static let inputFilePath = getInputFilePath()
+    
     static func main() throws {
         var days: [Day] = []
         
@@ -46,6 +53,9 @@ import Darwin
         let day3=Day_3()
         days.append(day3)
         
+        let day4=Day_4(input: self.inputFilePath)
+        days.append(day4)
+        
         var selectedDay: Int
         if let dayFromCLI = getDayFromCLI(from: days) {
             selectedDay = dayFromCLI
@@ -53,7 +63,7 @@ import Darwin
             selectedDay = getDayFromUser(from: days)
         }
         
-        while true {
+//        while true {
             if let day = days.first(where: { day in
                 if day.num == selectedDay {
                     return true
@@ -63,8 +73,8 @@ import Darwin
             }) {
                 day.run()
                 print("\n------------\n")
-                selectedDay = getDayFromUser(from: days)
+//                selectedDay = getDayFromUser(from: days)
             } else { exit(EXIT_SUCCESS) }
-        }
+//        }
     }
 }

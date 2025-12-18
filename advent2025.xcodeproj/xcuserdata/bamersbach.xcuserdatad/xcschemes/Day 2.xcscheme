@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A4B6773C2EE8B4FC00197BEF"
-               BuildableName = "advent2025-day1"
-               BlueprintName = "advent2025-day1"
+               BlueprintIdentifier = "A4B6771F2EE25DDD00197BEF"
+               BuildableName = "advent2025"
+               BlueprintName = "advent2025"
                ReferencedContainer = "container:advent2025.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,12 +45,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A4B6773C2EE8B4FC00197BEF"
-            BuildableName = "advent2025-day1"
-            BlueprintName = "advent2025-day1"
+            BlueprintIdentifier = "A4B6771F2EE25DDD00197BEF"
+            BuildableName = "advent2025"
+            BlueprintName = "advent2025"
             ReferencedContainer = "container:advent2025.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "2"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -62,9 +68,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A4B6773C2EE8B4FC00197BEF"
-            BuildableName = "advent2025-day1"
-            BlueprintName = "advent2025-day1"
+            BlueprintIdentifier = "A4B6771F2EE25DDD00197BEF"
+            BuildableName = "advent2025"
+            BlueprintName = "advent2025"
             ReferencedContainer = "container:advent2025.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
