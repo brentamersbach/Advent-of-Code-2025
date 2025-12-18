@@ -25,12 +25,9 @@ enum Direction {
 extension Direction: CaseIterable {}
 
 class Day_4: Day {
-    let inputFilePath: String
-    var fileContent = ""
     
     init(input: String) {
-        self.inputFilePath = input
-        super.init(num: 4)
+        super.init(num: 4, input: input)
     }
     
     func generateGrid(from data: [String.SubSequence]) -> [[Roll?]] {
@@ -174,10 +171,10 @@ class Day_4: Day {
     
     override func run() {
         print("---Day 4---\n")
-        let filePath = self.inputFilePath
+        var fileContent: String = ""
         
         do {
-            try fileContent = String(contentsOfFile: filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+            try fileContent = String(contentsOfFile: inputFilePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         } catch {
             print("Error reading file content: \(error)")
             exit(EXIT_FAILURE)

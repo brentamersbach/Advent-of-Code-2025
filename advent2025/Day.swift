@@ -7,9 +7,15 @@
 
 class Day {
     let num: Int
+    var inputFilePath: String = ""
     
     init(num: Int) {
         self.num = num
+    }
+    
+    init(num: Int, input: String) {
+        self.num = num
+        self.inputFilePath = input
     }
     
     func run() {
