@@ -42,19 +42,7 @@ import Darwin
     static let inputFilePath = getInputFilePath()
     
     static func main() throws {
-        var days: [Day] = []
-        
-        let day1=Day_1()
-        days.append(day1)
-        
-        let day2=Day_2()
-        days.append(day2)
-        
-        let day3=Day_3()
-        days.append(day3)
-        
-        let day4=Day_4(input: self.inputFilePath)
-        days.append(day4)
+        var days: [Day] = [Day_1(), Day_2(), Day_3(), Day_4(input: self.inputFilePath), Day_5(input: self.inputFilePath)]
         
         var selectedDay: Int
         if let dayFromCLI = getDayFromCLI(from: days) {
