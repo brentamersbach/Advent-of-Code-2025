@@ -41,8 +41,9 @@ import Darwin
     
     static let inputFilePath = getInputFilePath()
     
+    
     static func main() throws {
-        var days: [Day] = [Day_1(), Day_2(), Day_3(), Day_4(input: self.inputFilePath), Day_5(input: self.inputFilePath)]
+        let days: [Day] = [Day_1(), Day_2(), Day_3(), Day_4(input: self.inputFilePath), Day_5(input: self.inputFilePath)]
         
         var selectedDay: Int
         if let dayFromCLI = getDayFromCLI(from: days) {
@@ -50,19 +51,18 @@ import Darwin
         } else {
             selectedDay = getDayFromUser(from: days)
         }
+        print("Selected day: \(selectedDay)")
+        print("Input file path: \(inputFilePath)")
         
-//        while true {
-            if let day = days.first(where: { day in
-                if day.num == selectedDay {
-                    return true
-                } else {
-                    return false
-                }
-            }) {
-                day.run()
-                print("\n------------\n")
-//                selectedDay = getDayFromUser(from: days)
-            } else { exit(EXIT_SUCCESS) }
-//        }
+        if let day = days.first(where: { day in
+            if day.num == selectedDay {
+                return true
+            } else {
+                return false
+            }
+        }) {
+            day.run()
+            print("\n------------\n")
+        } else { exit(EXIT_SUCCESS) }
     }
 }

@@ -57,12 +57,16 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/bamersbach/Code/Swift/advent2025/advent2025/Inputs/day5_input.txt"
-            isEnabled = "YES">
+            argument = "$(PROJECT_DIR)/advent2025/Inputs/day5_input.txt"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/bamersbach/Code/Swift/advent2025/advent2025/Inputs/day5_example.txt"
+            argument = "$(PROJECT_DIR)/advent2025/Inputs/day5_example.txt"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "$(PROJECT_DIR)/advent2025/Inputs/day5_example_mod.txt"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
