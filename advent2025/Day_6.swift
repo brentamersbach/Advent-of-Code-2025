@@ -73,14 +73,35 @@ class Day_6: Day {
         return (operandsHorizontal, operatorArray)
     }
 
-    func processInputPartB(for operandLines: [String], using operatorLine: String) -> (operandArray: [[String]], operatorArray: [String]) {
-        var operandMatrix: [[String]] = []
-        for line in operandLines {
-            let splitLine = line.split(separator: " ", maxSplits: Int.max, omittingEmptySubsequences: true).map(String.init)
+    func processInputPartB(for operandLines: [String], using operatorLine: String) -> (operandArray: [[Int]], operatorArray: [String]) {
+        var operandMatrix: [[Character]] = []
+        let operandCount = operandLines.count
 
-            operandMatrix.append(splitLine)
+        for line in operandLines {
+            let chars = Array(line)
+
+            operandMatrix.append(chars)
         }
         let operandsHorizontal = transpose2DMatrix(operandMatrix)
+        let breakPattern = Array(repeating: Character(" "), count: operandCount)
+        let splitOperands = operandsHorizontal.split(separator: breakPattern)
+        var integerMatrix: [[Int]] = []
+        for row in splitOperands.indices {
+            var tempArray: [Int] = []
+            for characterSet in splitOperands[row].indices {
+                var tempString: String = ""
+                for character in splitOperands[row][characterSet].indices {
+                    if splitOperands[row][characterSet][character] == Character(" ") {
+                        continue
+                    } else {
+                        tempString.append(splitOperands[row][characterSet][character])
+                    }
+                }
+                tempArray.append(Int(tempString) ?? 0)
+            }
+            integerMatrix.append(tempArray)
+        }
+        
 
         let operatorSubstringArray = operatorLine.split(separator: " ", maxSplits: Int.max, omittingEmptySubsequences: true)
         var operatorArray: [String] = []
@@ -88,10 +109,7 @@ class Day_6: Day {
             operatorArray.append(String(element))
         }
 
-        guard operandsHorizontal.count == operatorArray.count else {
-            fatalError("Number of operands does not match number of operators")
-        }
-        return (operandsHorizontal, operatorArray)
+        return (integerMatrix, operatorArray)
     }
 
     func solvePartA(for operandLines: [String], using operatorLine: String) {
@@ -108,20 +126,19 @@ class Day_6: Day {
     }
 
     func solvePartB(for operandLines: [String], using operatorLine: String) {
-        var (operandMatrix, operatorArray) = processInputPartB(for: operandLines, using: operatorLine)
-
-        for matrixIndex in operandMatrix.indices {
-            guard let max = operandMatrix[matrixIndex].max(by: { $1.count > $0.count }) else { fatalError("Unable to determine longest string in row") }
-            for operandIndex in operandMatrix.indices {
-                if operandMatrix[operandIndex].count < max.count {
-                    let neededBytes = max.count - operandMatrix[operandIndex].count
-                    for _ in 1...neededBytes {
-                        operandMatrix[matrixIndex][operandIndex].insert(contentsOf: "0", at: operandMatrix[matrixIndex][operandIndex].startIndex)
-                    }
-                }
+        let (operandMatrix, operatorArray) = processInputPartB(for: operandLines, using: operatorLine)
+        guard operandMatrix.count == operatorArray.count else { fatalError("Inputs for Part B do not match in count.") }
+        print(operandMatrix)
+        print(operatorArray)
+        var results: [Int] = []
+        for index in operandMatrix.indices {
+            if operatorArray[index] == "+" {
+                results.append(operandMatrix[index].reduce(0, +))
+            } else if operatorArray[index] == "*" {
+                results.append(operandMatrix[index].reduce(1, *))
             }
         }
-        print(operandMatrix)
+        print("Part B Total: \(results.reduce(0, +))")
     }
 
     override func run() {
@@ -129,7 +146,4 @@ class Day_6: Day {
         solvePartA(for: operandLines, using: operatorLine)
         solvePartB(for: operandLines, using: operatorLine)
     }
-
-
 }
-
