@@ -174,7 +174,7 @@ class Day_4: Day {
         var fileContent: String = ""
         
         do {
-            try fileContent = String(contentsOfFile: inputFilePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+            try fileContent = String(contentsOfFile: input, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         } catch {
             print("Error reading file content: \(error)")
             exit(EXIT_FAILURE)

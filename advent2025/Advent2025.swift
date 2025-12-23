@@ -43,7 +43,7 @@ import Darwin
     
     
     static func main() throws {
-        let days: [Day] = [Day_1(), Day_2(), Day_3(), Day_4(input: self.inputFilePath), Day_5(input: self.inputFilePath)]
+        let days: [Day] = [Day_1(), Day_2(), Day_3(), Day_4(input: self.inputFilePath), Day_5(input: self.inputFilePath), Day_6(input: self.inputFilePath)]
         
         var selectedDay: Int
         if let dayFromCLI = getDayFromCLI(from: days) {

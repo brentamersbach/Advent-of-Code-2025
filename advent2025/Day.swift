@@ -7,7 +7,7 @@
 
 class Day {
     let num: Int
-    var inputFilePath: String = ""
+    var input: String = ""
     
     init(num: Int) {
         self.num = num
@@ -15,7 +15,7 @@ class Day {
     
     init(num: Int, input: String) {
         self.num = num
-        self.inputFilePath = input
+        self.input = input
     }
     
     func run() {

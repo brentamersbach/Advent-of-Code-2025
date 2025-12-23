@@ -27,6 +27,11 @@
 		<key>Day 5.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Day 6.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
 	</dict>

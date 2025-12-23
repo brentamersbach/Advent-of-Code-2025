@@ -53,20 +53,16 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "5"
+            argument = "6"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "$(PROJECT_DIR)/advent2025/Inputs/day5_input.txt"
+            argument = "$(PROJECT_DIR)/advent2025/Inputs/day6_input.txt"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "$(PROJECT_DIR)/advent2025/Inputs/day6_example.txt"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "$(PROJECT_DIR)/advent2025/Inputs/day5_example.txt"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "$(PROJECT_DIR)/advent2025/Inputs/day5_example_mod.txt"
-            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

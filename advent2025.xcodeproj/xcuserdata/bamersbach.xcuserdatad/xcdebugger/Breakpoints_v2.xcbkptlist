@@ -87,17 +87,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2F50168D-25E2-4C4E-9527-BC6DDDFF4E56"
+            uuid = "491E8634-17EC-4A75-A6AD-3527FB6FE375"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "advent2025/Day_5.swift"
+            filePath = "advent2025/Day_6.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "parseInput(for:)"
-            landmarkType = "9">
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "transpose2DMatrix(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
