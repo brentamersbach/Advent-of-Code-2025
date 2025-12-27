@@ -39,7 +39,32 @@ class Day_7: Day {
         print("")
     }
 
+    func parseInput(from fileContent: String) -> [[Node]]{
+        let lines = fileContent.split(separator: "\n")
+        var nodes: [[Node]] = []
+        for line in lines {
+            var row: [Node] = []
+            for char in line {
+                switch char {
+                case "S":
+                    row.append(.start)
+                case ".":
+                    row.append(.empty)
+                case "|":
+                    row.append(.beam)
+                case "^":
+                    row.append(.splitter)
+                default:
+                    fatalError("Unexpected character: \(char)")
+                }
+            }
+            nodes.append(row)
+        }
+        return nodes
+    }
+
     func solvePartA(_ nodes: [[Node]]) {
+        // Goal: How many times is the beam split?
         var outputNodes = nodes
         var splitCount: Int = 0
         for row in 1..<outputNodes.count {
@@ -68,8 +93,10 @@ class Day_7: Day {
     }
 
     func solvePartB(_ nodes: [[Node]]) {
+        // Goal: How many possible paths are there from top to bottom?
         var outputNodes = nodes
-        var timelines = 1
+
+        // Rebuild the diagram as in Part A
         for row in 1..<outputNodes.count {
             for node in 0..<outputNodes[row].count {
                 let aboveNode = outputNodes[row - 1][node]
@@ -78,7 +105,6 @@ class Day_7: Day {
                     case .empty:
                         outputNodes[row][node] = .beam
                     case .splitter:
-                        timelines *= 2
                         if node > 0 {
                             if outputNodes[row][node - 1] == .empty {
                                 outputNodes[row][node - 1] = .beam
@@ -95,32 +121,12 @@ class Day_7: Day {
                 }
             }
         }
+        var timelines = 0
+
         print("Timelines: \(timelines)")
     }
 
-    func parseInput(from fileContent: String) -> [[Node]]{
-        let lines = fileContent.split(separator: "\n")
-        var nodes: [[Node]] = []
-        for line in lines {
-            var row: [Node] = []
-            for char in line {
-                switch char {
-                case "S":
-                    row.append(.start)
-                case ".":
-                    row.append(.empty)
-                case "|":
-                    row.append(.beam)
-                case "^":
-                    row.append(.splitter)
-                default:
-                    fatalError("Unexpected character: \(char)")
-                }
-            }
-            nodes.append(row)
-        }
-        return nodes
-    }
+
 
     override func run() {
         let fileContent = loadInputFile(from: input)
