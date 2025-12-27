@@ -16,11 +16,86 @@ class Day_7: Day {
     }
 
     init(input: String) {
-        super.init(num: 6, input: input)
+        super.init(num: 7, input: input)
+    }
+
+    func printNodes(_ nodes: [[Node]]) {
+        for row in nodes {
+            var rowString: String = ""
+            for node in row {
+                switch node {
+                case .start:
+                    rowString.append("S")
+                case .empty:
+                    rowString.append(".")
+                case .beam:
+                    rowString.append("|")
+                case .splitter:
+                    rowString.append("^")
+                }
+            }
+            print(rowString)
+        }
+        print("")
     }
 
     func solvePartA(_ nodes: [[Node]]) {
-        
+        var outputNodes = nodes
+        var splitCount: Int = 0
+        for row in 1..<outputNodes.count {
+            for node in 0..<outputNodes[row].count {
+                let aboveNode = outputNodes[row - 1][node]
+                if aboveNode == .beam || aboveNode == .start {
+                    switch outputNodes[row][node] {
+                    case .empty:
+                            outputNodes[row][node] = .beam
+                    case .splitter:
+                        splitCount += 1
+                        if node > 0 {
+                            outputNodes[row][node - 1] = .beam
+                        }
+                        if node < outputNodes[row].count - 1 {
+                            outputNodes[row][node + 1] = .beam
+                        }
+                    default:
+                        continue
+                    }
+                }
+            }
+        }
+        printNodes(outputNodes)
+        print("Split total: \(splitCount)")
+    }
+
+    func solvePartB(_ nodes: [[Node]]) {
+        var outputNodes = nodes
+        var timelines = 1
+        for row in 1..<outputNodes.count {
+            for node in 0..<outputNodes[row].count {
+                let aboveNode = outputNodes[row - 1][node]
+                if aboveNode == .beam || aboveNode == .start {
+                    switch outputNodes[row][node] {
+                    case .empty:
+                        outputNodes[row][node] = .beam
+                    case .splitter:
+                        timelines *= 2
+                        if node > 0 {
+                            if outputNodes[row][node - 1] == .empty {
+                                outputNodes[row][node - 1] = .beam
+                            }
+                        }
+                        if node < outputNodes[row].count - 1 {
+                            if outputNodes[row][node + 1] == .empty {
+                                outputNodes[row][node + 1] = .beam
+                            }
+                        }
+                    default:
+                        continue
+                    }
+                }
+            }
+        }
+        print("Timelines: \(timelines)")
     }
 
     func parseInput(from fileContent: String) -> [[Node]]{
@@ -51,5 +126,6 @@ class Day_7: Day {
         let fileContent = loadInputFile(from: input)
         let nodes = parseInput(from: fileContent)
         solvePartA(nodes)
+        solvePartB(nodes)
     }
 }
