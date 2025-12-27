@@ -4,6 +4,7 @@
 //
 //  Created by Brent Amersbach on 12/4/25.
 //
+import Foundation
 
 class Day {
     let num: Int
@@ -17,7 +18,18 @@ class Day {
         self.num = num
         self.input = input
     }
-    
+
+    func loadInputFile(from filePath: String) -> String {
+        var fileContent: String = ""
+        do {
+            try fileContent = String(contentsOfFile: filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        } catch {
+            print("Error reading file content: \(error)")
+            exit(EXIT_FAILURE)
+        }
+        return fileContent
+    }
+
     func run() {
         return
     }

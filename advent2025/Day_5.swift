@@ -133,14 +133,7 @@ class Day_5: Day {
     
     override func run() {
         print("---Day 5---\n")
-        var fileContent: String = ""
-        
-        do {
-            try fileContent = String(contentsOfFile: input, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-        } catch {
-            print("Error reading file content: \(error)")
-            exit(EXIT_FAILURE)
-        }
+        let fileContent: String = loadInputFile(from: input)
         let (freshIDRanges, availableIDs) = parseInput(for: fileContent)
         
         solvePartA(forRanges: freshIDRanges, forIDs: availableIDs)

@@ -34,14 +34,7 @@ class Day_6: Day {
     }
 
     func parseInput(for filePath: String) -> (operands: [String], operators: String) {
-        var fileContent: String = ""
-        do {
-            try fileContent = String(contentsOfFile: filePath, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-        } catch {
-            print("Error reading file content: \(error)")
-            exit(EXIT_FAILURE)
-        }
-        print("Parsing input for: \(filePath)")
+        let fileContent = loadInputFile(from: filePath)
         let lines = fileContent.components(separatedBy: "\n")
         let operands = Array(lines.prefix(lines.count-1))
         guard let operators = lines.last else { fputs("Parsing failure\n", stderr) ; exit(EXIT_FAILURE) }
@@ -128,8 +121,8 @@ class Day_6: Day {
     func solvePartB(for operandLines: [String], using operatorLine: String) {
         let (operandMatrix, operatorArray) = processInputPartB(for: operandLines, using: operatorLine)
         guard operandMatrix.count == operatorArray.count else { fatalError("Inputs for Part B do not match in count.") }
-        print(operandMatrix)
-        print(operatorArray)
+//        print(operandMatrix)
+//        print(operatorArray)
         var results: [Int] = []
         for index in operandMatrix.indices {
             if operatorArray[index] == "+" {

@@ -43,17 +43,26 @@ import Darwin
     
     
     static func main() throws {
-        let days: [Day] = [Day_1(), Day_2(), Day_3(), Day_4(input: self.inputFilePath), Day_5(input: self.inputFilePath), Day_6(input: self.inputFilePath)]
-        
+        let days: [Day] = [
+            Day_1(),
+            Day_2(),
+            Day_3(),
+            Day_4(input: self.inputFilePath),
+            Day_5(input: self.inputFilePath),
+            Day_6(input: self.inputFilePath),
+            Day_7(input: self.inputFilePath)
+        ]
+
         var selectedDay: Int
         if let dayFromCLI = getDayFromCLI(from: days) {
             selectedDay = dayFromCLI
         } else {
             selectedDay = getDayFromUser(from: days)
         }
-        print("Selected day: \(selectedDay)")
-        print("Input file path: \(inputFilePath)")
-        
+
+//        print("Input file path: \(inputFilePath)")
+        print("Running Day \(selectedDay)\n------------\n")
+
         if let day = days.first(where: { day in
             if day.num == selectedDay {
                 return true

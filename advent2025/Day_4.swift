@@ -171,15 +171,8 @@ class Day_4: Day {
     
     override func run() {
         print("---Day 4---\n")
-        var fileContent: String = ""
-        
-        do {
-            try fileContent = String(contentsOfFile: input, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-        } catch {
-            print("Error reading file content: \(error)")
-            exit(EXIT_FAILURE)
-        }
-        
+        let fileContent: String = loadInputFile(from: input)
+
         solvePartA(with: fileContent)
         solvePartB(with: fileContent)
     }

@@ -100,51 +100,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ADD59618-0A77-41EA-BBE9-50BD86EE3739"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "advent2025/Advent2025.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "main()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ADD59618-0A77-41EA-BBE9-50BD86EE3739 - 31638375535c3a14"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static advent2025.Advent2025.main() throws -&gt; ()"
-                  moduleName = "advent2025"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bamersbach/Code/Swift/advent2025/advent2025/Advent2025.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57">
-               </Location>
-               <Location
-                  uuid = "ADD59618-0A77-41EA-BBE9-50BD86EE3739 - 2b57456b194ff984"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (advent2025.Day) -&gt; Swift.Bool in static advent2025.Advent2025.main() throws -&gt; ()"
-                  moduleName = "advent2025"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bamersbach/Code/Swift/advent2025/advent2025/Advent2025.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
