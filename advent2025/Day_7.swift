@@ -97,36 +97,35 @@ class Day_7: Day {
         var outputNodes = nodes
 
         // Rebuild the diagram as in Part A
+        var columnTotals: [Int] = Array(repeating: 0, count: outputNodes[0].count)
         for row in 1..<outputNodes.count {
             for node in 0..<outputNodes[row].count {
                 let aboveNode = outputNodes[row - 1][node]
-                if aboveNode == .beam || aboveNode == .start {
-                    switch outputNodes[row][node] {
-                    case .empty:
+                switch aboveNode {
+                case .start:
+                    if outputNodes[row][node] == .empty {
                         outputNodes[row][node] = .beam
-                    case .splitter:
-                        if node > 0 {
-                            if outputNodes[row][node - 1] == .empty {
-                                outputNodes[row][node - 1] = .beam
-                            }
-                        }
-                        if node < outputNodes[row].count - 1 {
-                            if outputNodes[row][node + 1] == .empty {
-                                outputNodes[row][node + 1] = .beam
-                            }
-                        }
-                    default:
-                        continue
+                        columnTotals[node] += 1
                     }
+                case .beam:
+                    if outputNodes[row][node] == .empty {
+                        outputNodes[row][node] = .beam
+                    } else if outputNodes[row][node] == .splitter {
+                        outputNodes[row][node - 1] = .beam
+                        columnTotals[node - 1] += columnTotals[node]
+                        outputNodes[row][node + 1] = .beam
+                        columnTotals[node + 1] += columnTotals[node]
+                        columnTotals[node] = 0
+                    }
+                default:
+                    continue
                 }
             }
         }
-        var timelines = 0
+        let timelines = columnTotals.reduce(0, +)
 
         print("Timelines: \(timelines)")
     }
-
-
 
     override func run() {
         let fileContent = loadInputFile(from: input)
